@@ -1,60 +1,60 @@
 #!/bin/bash
 
-# Development Environment Setup Script
-# This script sets up the development environment for the Job Matching application
+# 開発環境セットアップスクリプト
+# Job Matchingアプリケーションの開発環境をセットアップします
 
-echo "🚀 Setting up Job Matching development environment..."
+echo "🚀 Job Matching開発環境をセットアップしています..."
 
-# Check if .env exists, if not copy from .env.example
+# .envファイルが存在するかチェック、存在しない場合は.env.exampleからコピー
 if [ ! -f .env ]; then
-    echo "📋 Creating .env file from .env.example..."
+    echo "📋 .env.exampleから.envファイルを作成しています..."
     cp .env.example .env
 else
-    echo "✅ .env file already exists"
+    echo "✅ .envファイルは既に存在します"
 fi
 
-# Install PHP dependencies
-echo "📦 Installing PHP dependencies..."
+# PHP依存関係のインストール
+echo "📦 PHP依存関係をインストールしています..."
 if command -v composer &> /dev/null; then
     composer install
 else
-    echo "❌ Composer not found. Please install Composer first."
+    echo "❌ Composerが見つかりません。最初にComposerをインストールしてください。"
     exit 1
 fi
 
-# Install Node.js dependencies
-echo "📦 Installing Node.js dependencies..."
+# Node.js依存関係のインストール
+echo "📦 Node.js依存関係をインストールしています..."
 if command -v npm &> /dev/null; then
     npm install
 else
-    echo "❌ npm not found. Please install Node.js and npm first."
+    echo "❌ npmが見つかりません。最初にNode.jsとnpmをインストールしてください。"
     exit 1
 fi
 
-# Generate application key
-echo "🔑 Generating application key..."
-php artisan key:generate
+# アプリケーションキーの生成
+echo "🔑 アプリケーションキーを生成しています..."
+./vendor/bin/sail artisan key:generate
 
-# Create SQLite database if it doesn't exist
-echo "🗄️  Setting up database..."
+# SQLiteデータベースが存在しない場合は作成
+echo "🗄️  データベースをセットアップしています..."
 if [ ! -f database/database.sqlite ]; then
     touch database/database.sqlite
 fi
 
-# Run migrations
-echo "🔄 Running database migrations..."
-php artisan migrate
+# マイグレーションの実行
+echo "🔄 データベースマイグレーションを実行しています..."
+./vendor/bin/sail artisan migrate
 
-# Build frontend assets
-echo "🎨 Building frontend assets..."
+# フロントエンドアセットのビルド
+echo "🎨 フロントエンドアセットをビルドしています..."
 npm run build
 
-echo "✅ Development environment setup complete!"
+echo "✅ 開発環境のセットアップが完了しました！"
 echo ""
-echo "To start the development server:"
+echo "開発サーバーを起動するには:"
 echo "  composer run dev"
 echo ""
-echo "Or run each service separately:"
-echo "  php artisan serve       # Backend server"
-echo "  npm run dev            # Frontend dev server"
-echo "  php artisan queue:work # Queue worker (optional)"
+echo "または各サービスを個別に実行:"
+echo "  ./vendor/bin/sail artisan serve       # バックエンドサーバー"
+echo "  npm run dev            # フロントエンド開発サーバー"
+echo "  ./vendor/bin/sail artisan queue:work # キューワーカー（オプション）"

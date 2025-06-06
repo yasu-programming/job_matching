@@ -1,86 +1,86 @@
 #!/bin/bash
 
-# Development Environment Test Script
-# This script tests if the development environment is properly set up
+# 開発環境テストスクリプト
+# 開発環境が適切にセットアップされているかテストします
 
-echo "🧪 Testing Job Matching development environment..."
+echo "🧪 Job Matching開発環境をテストしています..."
 
 ERRORS=0
 
-# Test 1: Check if .env file exists
-echo -n "✓ Checking .env file... "
+# テスト1: .envファイルの存在確認
+echo -n "✓ .envファイルをチェックしています... "
 if [ -f .env ]; then
     echo "✅ PASS"
 else
-    echo "❌ FAIL - .env file not found"
+    echo "❌ FAIL - .envファイルが見つかりません"
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 2: Check if node_modules exists
-echo -n "✓ Checking Node.js dependencies... "
+# テスト2: node_modulesの存在確認
+echo -n "✓ Node.js依存関係をチェックしています... "
 if [ -d node_modules ]; then
     echo "✅ PASS"
 else
-    echo "❌ FAIL - node_modules not found. Run 'npm install'"
+    echo "❌ FAIL - node_modulesが見つかりません。'npm install'を実行してください"
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 3: Test frontend build
-echo -n "✓ Testing frontend build... "
+# テスト3: フロントエンドビルドテスト
+echo -n "✓ フロントエンドビルドをテストしています... "
 if npm run build > /dev/null 2>&1; then
     echo "✅ PASS"
 else
-    echo "❌ FAIL - Frontend build failed"
+    echo "❌ FAIL - フロントエンドビルドが失敗しました"
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 4: Check if build files were created
-echo -n "✓ Checking build output... "
+# テスト4: ビルドファイルの作成確認
+echo -n "✓ ビルド出力をチェックしています... "
 if [ -f public/build/manifest.json ]; then
     echo "✅ PASS"
 else
-    echo "❌ FAIL - Build manifest not found"
+    echo "❌ FAIL - ビルドマニフェストが見つかりません"
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 5: Check VS Code configuration
-echo -n "✓ Checking VS Code configuration... "
+# テスト5: VS Code設定の確認
+echo -n "✓ VS Code設定をチェックしています... "
 if [ -f .vscode/settings.json ] && [ -f .vscode/extensions.json ]; then
     echo "✅ PASS"
 else
-    echo "❌ FAIL - VS Code configuration incomplete"
+    echo "❌ FAIL - VS Code設定が不完全です"
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 6: Check code formatting configuration
-echo -n "✓ Checking code formatting configuration... "
+# テスト6: コードフォーマット設定の確認
+echo -n "✓ コードフォーマット設定をチェックしています... "
 if [ -f pint.json ] && [ -f .prettierrc ]; then
     echo "✅ PASS"
 else
-    echo "❌ FAIL - Code formatting configuration incomplete"
+    echo "❌ FAIL - コードフォーマット設定が不完全です"
     ERRORS=$((ERRORS + 1))
 fi
 
-# Test 7: Check if SQLite database directory exists
-echo -n "✓ Checking database directory... "
+# テスト7: SQLiteデータベースディレクトリの存在確認
+echo -n "✓ データベースディレクトリをチェックしています... "
 if [ -d database ]; then
     echo "✅ PASS"
 else
-    echo "❌ FAIL - Database directory not found"
+    echo "❌ FAIL - データベースディレクトリが見つかりません"
     ERRORS=$((ERRORS + 1))
 fi
 
 echo ""
 if [ $ERRORS -eq 0 ]; then
-    echo "🎉 All tests passed! Development environment is ready."
+    echo "🎉 すべてのテストが成功しました！開発環境の準備が整いました。"
     echo ""
-    echo "Next steps:"
-    echo "1. Install PHP dependencies: composer install"
-    echo "2. Generate app key: php artisan key:generate"
-    echo "3. Set up database: php artisan migrate"
-    echo "4. Start development: composer run dev"
+    echo "次のステップ:"
+    echo "1. PHP依存関係のインストール: composer install"
+    echo "2. アプリケーションキーの生成: ./vendor/bin/sail artisan key:generate"
+    echo "3. データベースのセットアップ: ./vendor/bin/sail artisan migrate"
+    echo "4. 開発開始: composer run dev"
     exit 0
 else
-    echo "❌ $ERRORS test(s) failed. Please fix the issues above."
+    echo "❌ $ERRORS 個のテストが失敗しました。上記の問題を修正してください。"
     exit 1
 fi

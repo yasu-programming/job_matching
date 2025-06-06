@@ -41,7 +41,7 @@ npm install
 
 #### 2.4 アプリケーションキーの生成
 ```bash
-php artisan key:generate
+./vendor/bin/sail artisan key:generate
 ```
 
 #### 2.5 データベースのセットアップ
@@ -50,10 +50,10 @@ php artisan key:generate
 touch database/database.sqlite
 
 # マイグレーション実行
-php artisan migrate
+./vendor/bin/sail artisan migrate
 
 # シーダー実行（オプション）
-php artisan db:seed
+./vendor/bin/sail artisan db:seed
 ```
 
 #### 2.6 フロントエンドアセットのビルド
@@ -76,13 +76,13 @@ composer run dev
 ### 方法2: 個別起動
 ```bash
 # バックエンドサーバー
-php artisan serve
+./vendor/bin/sail artisan serve
 
 # フロントエンド開発サーバー（別ターミナル）
 npm run dev
 
 # キューワーカー（別ターミナル、必要に応じて）
-php artisan queue:work
+./vendor/bin/sail artisan queue:work
 ```
 
 ## 設定の詳細
@@ -154,10 +154,10 @@ npx prettier --write .
 ### テスト実行
 ```bash
 # PHPUnit
-php artisan test
+./vendor/bin/sail artisan test
 
 # または
-./vendor/bin/phpunit
+./vendor/bin/sail test
 ```
 
 ## フロントエンド開発
@@ -200,39 +200,39 @@ npm install
 #### 4. データベース接続エラー
 - `.env`のDB設定を確認
 - SQLiteファイルの存在と権限を確認
-- `php artisan config:clear`でキャッシュクリア
+- `./vendor/bin/sail artisan config:clear`でキャッシュクリア
 
 ## 開発フロー
 
 ### 1. 新機能開発
 1. ブランチ作成: `git checkout -b feature/feature-name`
 2. コード作成・修正
-3. テスト実行: `php artisan test`
+3. テスト実行: `./vendor/bin/sail artisan test`
 4. フォーマット: `./vendor/bin/pint`
 5. コミット・プッシュ
 
 ### 2. マイグレーション
 ```bash
 # マイグレーション作成
-php artisan make:migration create_table_name
+./vendor/bin/sail artisan make:migration create_table_name
 
 # マイグレーション実行
-php artisan migrate
+./vendor/bin/sail artisan migrate
 
 # ロールバック
-php artisan migrate:rollback
+./vendor/bin/sail artisan migrate:rollback
 ```
 
 ### 3. モデル・コントローラー作成
 ```bash
 # モデル
-php artisan make:model ModelName
+./vendor/bin/sail artisan make:model ModelName
 
 # コントローラー
-php artisan make:controller ControllerName
+./vendor/bin/sail artisan make:controller ControllerName
 
 # リソースコントローラー
-php artisan make:controller ControllerName --resource
+./vendor/bin/sail artisan make:controller ControllerName --resource
 ```
 
 ## 本番デプロイメント準備
@@ -240,9 +240,9 @@ php artisan make:controller ControllerName --resource
 ```bash
 # 最適化
 composer install --optimize-autoloader --no-dev
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
+./vendor/bin/sail artisan config:cache
+./vendor/bin/sail artisan route:cache
+./vendor/bin/sail artisan view:cache
 
 # アセット最適化
 npm run build
