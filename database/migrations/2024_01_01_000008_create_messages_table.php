@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('company_id')->constrained('companies')->cascadeOnDelete();
             $table->foreignId('jobseeker_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('application_id')->nullable()->constrained('applications')->nullOnDelete();
+            // Note: scout_id foreign key will be added later after scouts table is created
             $table->enum('status', ['active', 'archived', 'blocked'])->default('active');
             $table->timestamp('last_message_at')->nullable();
             $table->timestamps();
