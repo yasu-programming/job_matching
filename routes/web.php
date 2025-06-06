@@ -6,17 +6,19 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\JobseekerDashboardController;
-use App\Http\Controllers\CompanyDashboardController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\JobseekerProfileController;
-use App\Http\Controllers\CompanyProfileController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
-// Authentication Routes
+// Authentication Routes (for Blade fallback and CSRF cookie)
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisterController::class, 'create'])->name('register');
     Route::post('register', [RegisterController::class, 'store']);
@@ -39,27 +41,9 @@ Route::middleware('auth')->group(function () {
         ->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
     Route::post('email/verification-notification', [VerificationController::class, 'resend'])
         ->middleware('throttle:6,1')->name('verification.send');
-
-    // Profile Routes
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 });
 
-// Dashboard Routes
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-// Jobseeker Routes
-Route::middleware(['auth', 'verified', 'user.type:jobseeker'])->prefix('jobseeker')->name('jobseeker.')->group(function () {
-    Route::get('/dashboard', [JobseekerDashboardController::class, 'index'])->name('dashboard');
-    Route::put('/profile', [JobseekerProfileController::class, 'update'])->name('profile.update');
-    Route::post('/profile/upload-image', [JobseekerProfileController::class, 'uploadImage'])->name('profile.upload-image');
-});
-
-// Company Routes
-Route::middleware(['auth', 'verified', 'user.type:company'])->prefix('company')->name('company.')->group(function () {
-    Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
-    Route::put('/profile', [CompanyProfileController::class, 'update'])->name('profile.update');
-    Route::post('/profile/upload-logo', [CompanyProfileController::class, 'uploadLogo'])->name('profile.upload-logo');
-});
+// React SPA Routes - catch-all route that serves the React application
+Route::get('/{any}', function () {
+    return view('app');
+})->where('any', '.*');

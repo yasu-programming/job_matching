@@ -24,10 +24,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (credentials) => {
-        try {
-            // Get CSRF cookie first
-            await axios.get('/sanctum/csrf-cookie');
-            
+        try {            
             const response = await axios.post('/login', credentials);
             
             if (response.status === 200) {
@@ -43,8 +40,6 @@ export const AuthProvider = ({ children }) => {
 
     const register = async (userData) => {
         try {
-            await axios.get('/sanctum/csrf-cookie');
-            
             const response = await axios.post('/register', userData);
             
             if (response.status === 200 || response.status === 201) {

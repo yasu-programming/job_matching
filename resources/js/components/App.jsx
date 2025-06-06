@@ -5,6 +5,7 @@ import Welcome from './Landing/Welcome';
 import Login from './Auth/Login';
 import Register from './Auth/Register';
 import Dashboard from './Dashboard/Dashboard';
+import Profile from './Profile/Profile';
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/profile" element={<Profile />} />
                         {/* Additional routes will be added here */}
                     </Routes>
                 </div>
