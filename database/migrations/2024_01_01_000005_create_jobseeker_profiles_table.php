@@ -33,11 +33,10 @@ return new class extends Migration
             $table->enum('work_location_preference', ['office', 'remote', 'hybrid'])->nullable();
             $table->timestamps();
             
-            // Add indexes
-            $table->index('user_id', 'idx_user_id');
-            $table->index('prefecture', 'idx_prefecture');
-            $table->index('experience_years', 'idx_experience_years');
-            $table->index('desired_salary_min', 'idx_desired_salary_min');
+            // Add indexes (user_id already has foreign key index)
+            $table->index('prefecture', 'idx_jobseekers_prefecture');
+            $table->index('experience_years', 'idx_jobseekers_experience_years');
+            $table->index('desired_salary_min', 'idx_jobseekers_desired_salary_min');
         });
     }
 
