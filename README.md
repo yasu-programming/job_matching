@@ -1,3 +1,71 @@
+# Job Matching Application
+
+転職マッチングアプリケーション - Laravel + Tailwind CSS で構築された求人・転職マッチングプラットフォーム
+
+## 🚀 開発環境のセットアップ
+
+### クイックスタート
+```bash
+# 自動セットアップスクリプトを実行
+./setup-dev.sh
+
+# 開発環境テスト
+./test-dev-env.sh
+
+# 開発サーバー起動
+composer run dev
+```
+
+### 詳細な手順
+詳細なセットアップ手順については [開発環境セットアップガイド](docs/development-setup.md) を参照してください。
+
+## 🛠️ 技術スタック
+
+- **Backend**: Laravel 12.x (PHP 8.2+)
+- **Frontend**: Vite + Tailwind CSS v4
+- **Database**: SQLite (開発) / MySQL (本番)
+- **Queue**: Database
+- **Cache**: Database
+
+## 📋 主要機能
+
+- ユーザー認証・認可システム
+- 求職者プロフィール管理
+- 企業プロフィール管理
+- 求人投稿・管理
+- 応募・マッチング機能
+- メッセージング機能
+- 通知システム
+- レジュメ管理
+
+## 🔧 開発ツール
+
+- **コードフォーマッタ**: Laravel Pint (PHP), Prettier (JS/CSS)
+- **IDE設定**: VS Code設定ファイル完備
+- **デバッグ**: XDebug対応
+- **テスト**: PHPUnit
+
+## 📁 プロジェクト構造
+
+```
+├── app/                    # Laravelアプリケーションコード
+├── config/                 # 設定ファイル
+├── database/              # マイグレーション、シーダー
+├── docs/                  # ドキュメント
+├── public/                # 公開ファイル
+├── resources/             # ビュー、アセット
+│   ├── css/
+│   ├── js/
+│   └── views/
+├── routes/                # ルート定義
+├── tests/                 # テストファイル
+├── .vscode/               # VS Code設定
+├── setup-dev.sh           # 開発環境セットアップスクリプト
+└── test-dev-env.sh        # 環境テストスクリプト
+```
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

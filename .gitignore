@@ -9,7 +9,7 @@
 /.idea
 /.nova
 /.phpunit.cache
-/.vscode
+# /.vscode  # Keep VS Code settings for development environment
 /.zed
 /auth.json
 /node_modules
