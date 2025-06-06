@@ -1,0 +1,16 @@
+{
+    "recommendations": [
+        "bmewburn.vscode-intelephense-client",
+        "DEVSENSE.phptools-vscode",
+        "shufo.vscode-blade-formatter",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss",
+        "formulahendry.auto-rename-tag",
+        "ms-vscode.vscode-json",
+        "ms-vscode.vscode-typescript-next",
+        "xdebug.php-debug",
+        "ms-vscode.vscode-blade",
+        "onecentlin.laravel-blade",
+        "ryannaddy.laravel-artisan"
+    ]
+}

@@ -4,7 +4,10 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "watch": "vite --watch",
+        "format": "prettier --write \"resources/**/*.{js,css,vue}\"",
+        "format:check": "prettier --check \"resources/**/*.{js,css,vue}\""
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
