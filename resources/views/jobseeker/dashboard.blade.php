@@ -18,10 +18,20 @@
                             <p class="text-blue-600 text-sm mt-2">Find your perfect job match</p>
                         </div>
                         
-                        <div class="bg-green-50 p-4 rounded-lg">
+                        <a href="{{ route('profile.show') }}" class="bg-green-50 p-4 rounded-lg hover:bg-green-100 transition-colors duration-200 block">
                             <h4 class="font-semibold text-green-800">Profile</h4>
                             <p class="text-green-600 text-sm mt-2">Update your skills and experience</p>
-                        </div>
+                            @if(Auth::user()->profile_completion < 100)
+                                <div class="mt-2">
+                                    <div class="flex items-center">
+                                        <div class="w-full bg-gray-200 rounded-full h-2">
+                                            <div class="bg-green-500 h-2 rounded-full" style="width: {{ Auth::user()->profile_completion }}%"></div>
+                                        </div>
+                                        <span class="text-xs text-gray-600 ml-2">{{ Auth::user()->profile_completion }}%</span>
+                                    </div>
+                                </div>
+                            @endif
+                        </a>
                         
                         <div class="bg-purple-50 p-4 rounded-lg">
                             <h4 class="font-semibold text-purple-800">Applications</h4>

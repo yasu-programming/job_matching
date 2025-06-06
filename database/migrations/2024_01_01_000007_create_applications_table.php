@@ -27,10 +27,10 @@ return new class extends Migration
             
             // Add unique constraint and indexes
             $table->unique(['job_posting_id', 'jobseeker_id'], 'unique_application');
-            $table->index('job_posting_id', 'idx_job_posting_id');
-            $table->index('jobseeker_id', 'idx_jobseeker_id');
-            $table->index('status', 'idx_status');
-            $table->index('applied_at', 'idx_applied_at');
+            $table->index('job_posting_id', 'idx_applications_job_posting_id');
+            $table->index('jobseeker_id', 'idx_applications_jobseeker_id');
+            $table->index('status', 'idx_applications_status');
+            $table->index('applied_at', 'idx_applications_applied_at');
         });
     }
 

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('company_name', 255);
             $table->string('company_name_kana', 255)->nullable();
             $table->string('industry', 100)->nullable();
-            $table->enum('company_size', ['startup', 'small', 'medium', 'large', 'enterprise'])->nullable();
+            $table->enum('company_size', ['1-10', '11-50', '51-100', '101-500', '501-1000', '1001+'])->nullable();
             $table->year('established_year')->nullable();
             $table->unsignedInteger('capital')->nullable();
             $table->unsignedInteger('employee_count')->nullable();

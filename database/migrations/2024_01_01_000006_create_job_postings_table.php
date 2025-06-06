@@ -36,12 +36,12 @@ return new class extends Migration
             $table->timestamps();
             
             // Add indexes
-            $table->index('company_id', 'idx_company_id');
-            $table->index('status', 'idx_status');
-            $table->index('employment_type', 'idx_employment_type');
-            $table->index('salary_min', 'idx_salary_min');
-            $table->index('experience_required', 'idx_experience_required');
-            $table->index('published_at', 'idx_published_at');
+            $table->index('company_id', 'idx_job_postings_company_id');
+            $table->index('status', 'idx_job_postings_status');
+            $table->index('employment_type', 'idx_job_postings_employment_type');
+            $table->index('salary_min', 'idx_job_postings_salary_min');
+            $table->index('experience_required', 'idx_job_postings_experience_required');
+            $table->index('published_at', 'idx_job_postings_published_at');
         });
     }
 
