@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}" class="flex items-center">
-                        <x-application-logo class="block h-9 w-auto fill-current text-indigo-600" />
+                        <x-application-logo class="block h-6 w-auto fill-current text-indigo-600" />
                         <span class="ml-2 text-xl font-bold text-gray-800 hidden sm:block">
                             {{ config('app.name', 'Job Matching') }}
                         </span>
