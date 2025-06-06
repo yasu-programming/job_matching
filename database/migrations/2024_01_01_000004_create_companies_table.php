@@ -31,11 +31,10 @@ return new class extends Migration
             $table->string('logo_url', 500)->nullable();
             $table->timestamps();
             
-            // Add indexes
-            $table->index('user_id', 'idx_user_id');
-            $table->index('company_name', 'idx_company_name');
-            $table->index('industry', 'idx_industry');
-            $table->index('prefecture', 'idx_prefecture');
+            // Add indexes (user_id already has foreign key index)
+            $table->index('company_name', 'idx_companies_company_name');
+            $table->index('industry', 'idx_companies_industry');
+            $table->index('prefecture', 'idx_companies_prefecture');
         });
     }
 
