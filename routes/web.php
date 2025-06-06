@@ -8,6 +8,9 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\JobseekerDashboardController;
 use App\Http\Controllers\CompanyDashboardController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\JobseekerProfileController;
+use App\Http\Controllers\CompanyProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,6 +39,10 @@ Route::middleware('auth')->group(function () {
         ->middleware(['signed', 'throttle:6,1'])->name('verification.verify');
     Route::post('email/verification-notification', [VerificationController::class, 'resend'])
         ->middleware('throttle:6,1')->name('verification.send');
+
+    // Profile Routes
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 });
 
 // Dashboard Routes
@@ -46,9 +53,13 @@ Route::get('/dashboard', function () {
 // Jobseeker Routes
 Route::middleware(['auth', 'verified', 'user.type:jobseeker'])->prefix('jobseeker')->name('jobseeker.')->group(function () {
     Route::get('/dashboard', [JobseekerDashboardController::class, 'index'])->name('dashboard');
+    Route::put('/profile', [JobseekerProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/upload-image', [JobseekerProfileController::class, 'uploadImage'])->name('profile.upload-image');
 });
 
 // Company Routes
 Route::middleware(['auth', 'verified', 'user.type:company'])->prefix('company')->name('company.')->group(function () {
     Route::get('/dashboard', [CompanyDashboardController::class, 'index'])->name('dashboard');
+    Route::put('/profile', [CompanyProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/upload-logo', [CompanyProfileController::class, 'uploadLogo'])->name('profile.upload-logo');
 });
