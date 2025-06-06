@@ -6,6 +6,7 @@ import Login from './Auth/Login';
 import Register from './Auth/Register';
 import Dashboard from './Dashboard/Dashboard';
 import Profile from './Profile/Profile';
+import NotFound from './Common/NotFound';
 
 function App() {
     return (
@@ -18,7 +19,8 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/profile" element={<Profile />} />
-                        {/* Additional routes will be added here */}
+                        {/* Catch-all route for 404 pages */}
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>
             </Router>
