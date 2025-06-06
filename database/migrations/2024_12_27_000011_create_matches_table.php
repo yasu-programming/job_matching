@@ -26,8 +26,8 @@ return new class extends Migration
             $table->unique(['job_posting_id', 'jobseeker_id'], 'unique_match');
             
             // Indexes for better performance
-            $table->index('job_posting_id', 'idx_job_posting_id');
-            $table->index('jobseeker_id', 'idx_jobseeker_id');
+            $table->index('job_posting_id', 'idx_matches_job_posting_id');
+            $table->index('jobseeker_id', 'idx_matches_jobseeker_id');
             $table->index('match_score', 'idx_match_score');
         });
     }

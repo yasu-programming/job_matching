@@ -26,7 +26,7 @@ return new class extends Migration
             $table->text('notes')->nullable();
             
             // Interview status
-            $table->enum('status', ['scheduled', 'confirmed', 'completed', 'cancelled', 'rescheduled'])->default('scheduled')->index('idx_status');
+            $table->enum('status', ['scheduled', 'confirmed', 'completed', 'cancelled', 'rescheduled'])->default('scheduled')->index('idx_interview_schedules_status');
             
             // Who created this schedule
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
@@ -34,7 +34,7 @@ return new class extends Migration
             $table->timestamps();
             
             // Indexes for better performance
-            $table->index('application_id', 'idx_application_id');
+            $table->index('application_id', 'idx_interview_schedules_application_id');
         });
     }
 

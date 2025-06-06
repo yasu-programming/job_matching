@@ -26,14 +26,14 @@ return new class extends Migration
             $table->integer('file_size')->unsigned()->nullable();
             
             // Read status
-            $table->boolean('is_read')->default(false)->index('idx_is_read');
+            $table->boolean('is_read')->default(false)->index('idx_messages_is_read');
             $table->timestamp('read_at')->nullable();
             
-            $table->timestamp('created_at')->useCurrent()->index('idx_created_at');
+            $table->timestamp('created_at')->useCurrent()->index('idx_messages_created_at');
             
             // Indexes for better performance
-            $table->index('conversation_id', 'idx_conversation_id');
-            $table->index('sender_id', 'idx_sender_id');
+            $table->index('conversation_id', 'idx_messages_conversation_id');
+            $table->index('sender_id', 'idx_messages_sender_id');
         });
     }
 

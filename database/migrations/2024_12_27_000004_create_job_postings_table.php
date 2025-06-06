@@ -47,7 +47,7 @@ return new class extends Migration
             
             // Application and status
             $table->date('application_deadline')->nullable();
-            $table->enum('status', ['draft', 'published', 'closed', 'archived'])->default('draft')->index('idx_status');
+            $table->enum('status', ['draft', 'published', 'closed', 'archived'])->default('draft')->index('idx_job_postings_status');
             
             // Analytics
             $table->integer('view_count')->unsigned()->default(0);
@@ -57,7 +57,7 @@ return new class extends Migration
             $table->timestamp('published_at')->nullable()->index('idx_published_at');
             
             // Additional indexes
-            $table->index('company_id', 'idx_company_id');
+            $table->index('company_id', 'idx_job_postings_company_id');
         });
     }
 

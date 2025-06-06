@@ -32,8 +32,8 @@ return new class extends Migration
             $table->unique(['company_id', 'jobseeker_id'], 'unique_conversation');
             
             // Indexes for better performance
-            $table->index('company_id', 'idx_company_id');
-            $table->index('jobseeker_id', 'idx_jobseeker_id');
+            $table->index('company_id', 'idx_conversations_company_id');
+            $table->index('jobseeker_id', 'idx_conversations_jobseeker_id');
         });
     }
 

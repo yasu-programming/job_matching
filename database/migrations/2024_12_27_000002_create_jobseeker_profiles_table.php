@@ -61,8 +61,8 @@ return new class extends Migration
             $table->timestamps();
             
             // Indexes for better performance
-            $table->index('user_id', 'idx_user_id');
-            $table->index('prefecture', 'idx_prefecture');
+            $table->index('user_id', 'idx_jobseeker_profiles_user_id');
+            $table->index('prefecture', 'idx_jobseeker_profiles_prefecture');
             $table->index('experience_years', 'idx_experience_years');
             $table->index('desired_salary_min', 'idx_desired_salary_min');
         });

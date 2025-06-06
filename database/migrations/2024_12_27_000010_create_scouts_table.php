@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('message');
             
             // Scout status
-            $table->enum('status', ['sent', 'read', 'replied', 'ignored', 'accepted', 'declined'])->default('sent')->index('idx_status');
+            $table->enum('status', ['sent', 'read', 'replied', 'ignored', 'accepted', 'declined'])->default('sent')->index('idx_scouts_status');
             
             // Timeline
             $table->timestamp('sent_at')->useCurrent()->index('idx_sent_at');
@@ -32,8 +32,8 @@ return new class extends Migration
             $table->timestamps();
             
             // Indexes for better performance
-            $table->index('company_id', 'idx_company_id');
-            $table->index('jobseeker_id', 'idx_jobseeker_id');
+            $table->index('company_id', 'idx_scouts_company_id');
+            $table->index('jobseeker_id', 'idx_scouts_jobseeker_id');
         });
     }
 

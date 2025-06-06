@@ -31,7 +31,7 @@ return new class extends Migration
             
             // Add indexes for better performance
             $table->index('user_type', 'idx_user_type');
-            $table->index('status', 'idx_status');
+            $table->index('status', 'idx_users_status');
         });
         
         // Remove the original name column after adding first_name and last_name
@@ -53,7 +53,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             // Drop indexes
             $table->dropIndex('idx_user_type');
-            $table->dropIndex('idx_status');
+            $table->dropIndex('idx_users_status');
             
             // Drop added columns
             $table->dropColumn([

@@ -31,7 +31,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             
             // Company location
-            $table->string('prefecture', 50)->nullable()->index('idx_prefecture');
+            $table->string('prefecture', 50)->nullable()->index('idx_companies_prefecture');
             $table->string('city', 100)->nullable();
             $table->string('address', 255)->nullable();
             $table->string('postal_code', 10)->nullable();
@@ -43,7 +43,7 @@ return new class extends Migration
             $table->timestamps();
             
             // Additional indexes
-            $table->index('user_id', 'idx_user_id');
+            $table->index('user_id', 'idx_companies_user_id');
         });
     }
 

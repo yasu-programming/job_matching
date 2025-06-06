@@ -24,13 +24,13 @@ return new class extends Migration
             $table->json('data')->nullable(); // Can store related IDs, links, etc.
             
             // Read status
-            $table->boolean('is_read')->default(false)->index('idx_is_read');
+            $table->boolean('is_read')->default(false)->index('idx_notifications_is_read');
             $table->timestamp('read_at')->nullable();
             
-            $table->timestamp('created_at')->useCurrent()->index('idx_created_at');
+            $table->timestamp('created_at')->useCurrent()->index('idx_notifications_created_at');
             
             // Index for user notifications
-            $table->index('user_id', 'idx_user_id');
+            $table->index('user_id', 'idx_notifications_user_id');
         });
     }
 

@@ -25,14 +25,14 @@ return new class extends Migration
             // Version and status
             $table->tinyInteger('version')->unsigned()->default(1);
             $table->boolean('is_primary')->default(false)->index('idx_is_primary');
-            $table->enum('status', ['uploading', 'scanning', 'approved', 'rejected'])->default('uploading')->index('idx_status');
+            $table->enum('status', ['uploading', 'scanning', 'approved', 'rejected'])->default('uploading')->index('idx_resumes_status');
             
             // Timestamps
             $table->timestamp('uploaded_at')->useCurrent()->index('idx_uploaded_at');
             $table->timestamps();
             
             // Index for jobseeker resumes
-            $table->index('jobseeker_id', 'idx_jobseeker_id');
+            $table->index('jobseeker_id', 'idx_resumes_jobseeker_id');
         });
     }
 

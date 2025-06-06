@@ -29,7 +29,7 @@ return new class extends Migration
                 'accepted', 
                 'rejected', 
                 'withdrawn'
-            ])->default('pending')->index('idx_status');
+            ])->default('pending')->index('idx_applications_status');
             
             // Important timestamps
             $table->timestamp('applied_at')->useCurrent()->index('idx_applied_at');
@@ -46,8 +46,8 @@ return new class extends Migration
             $table->unique(['job_posting_id', 'jobseeker_id'], 'unique_application');
             
             // Indexes for better performance
-            $table->index('job_posting_id', 'idx_job_posting_id');
-            $table->index('jobseeker_id', 'idx_jobseeker_id');
+            $table->index('job_posting_id', 'idx_applications_job_posting_id');
+            $table->index('jobseeker_id', 'idx_applications_jobseeker_id');
         });
     }
 
